@@ -1,2 +1,4 @@
-    it("checks for an event",async()=>{
-      expect(transaction).to.emit(dappazon,"Buy");
+useEffect(() => {
+  console.log(`Current count: ${count}`);
+  // Some side effect code using count...
+}, [count]);
