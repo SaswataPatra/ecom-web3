@@ -53,8 +53,9 @@ contract Dappazon {
 
     function buy(uint256 _id) public payable {
         //Create an order
-
+        
         Item memory item = items[_id];
+        require(msg.value>=item.cost,"Insufficient balance");
         Order memory order = Order(block.timestamp, item);
 
         orderCount[msg.sender]++;
@@ -62,5 +63,8 @@ contract Dappazon {
 
         items[_id].stock=item.stock-1;
         emit Buy(msg.sender,item.id,item.cost);
+    }
+    function withdraw() public onlyOwner{
+        payable(owner).transfer(address(this).balance);
     }
 }
